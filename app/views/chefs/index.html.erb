@@ -9,7 +9,9 @@
           <li><%= link_to gravatar_for(chef), chef_path(chef) %></li>
           <li class="chef-title"><%= chef.chefname.capitalize %></li>
           <li><%= pluralize(chef.recipes.count, "recipe") if chef.recipes %></li>
-          <li class="chef-actions"><%= link_to "Delete", chef_path(chef), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" %></li>
+          <% if logged_in? && current_chef.admin? && !chef.admin? %>
+            <li class="chef-actions"><%= link_to "Delete", chef_path(chef), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" %></li>
+          <% end %>
         </div>
       </div>
     </ul>
