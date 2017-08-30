@@ -7,7 +7,7 @@
   <div class="pull-right">
     <p class="center"><em>Created by:</em></p>
     <p class="center">
-      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+      <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %>
     </p>
     <p class="center">
       <small>
@@ -19,8 +19,10 @@
     </p>
   </div>
   <div class="recipe-actions">
-    <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
-    <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
+    <% if logged_in? && current_chef == @recipe.chef %>
+      <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
+      <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
+    <% end %>
     <%= link_to "Index", recipes_path, class: "btn btn-xs btn-primary" %>
   </div>
 </div>
