@@ -1,0 +1,12 @@
+<div class="message">
+  <p>
+    <em><%= time_ago_in_words(message.created_at) %> ago</em>
+  </p>
+  <p>
+    <%= gravatar_for(message.chef, size: 35) %>
+    <%= message.chef.chefname %>:
+    <span class="content">
+      <%= message.content %>
+    </span>
+  </p>
+</div>
